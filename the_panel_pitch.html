@@ -1,0 +1,1612 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Panel — Pitch Deck</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600;9..144,700;9..144,900&family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0f0e0c;
+    --paper: #f5f1ea;
+    --paper-2: #ebe4d6;
+    --accent: #c8543d;
+    --accent-2: #2d4a3e;
+    --muted: #6b6358;
+    --line: #1a1814;
+    --highlight: #e8d967;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html, body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Inter', sans-serif;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .deck {
+    max-width: 100%;
+  }
+
+  .slide {
+    min-height: 100vh;
+    padding: 80px 96px;
+    border-bottom: 1px solid var(--line);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .slide-number {
+    position: absolute;
+    top: 32px;
+    right: 48px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    color: var(--muted);
+    text-transform: uppercase;
+  }
+
+  .slide-label {
+    position: absolute;
+    top: 32px;
+    left: 48px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    color: var(--muted);
+    text-transform: uppercase;
+  }
+
+  .slide-footer {
+    position: absolute;
+    bottom: 32px;
+    left: 48px;
+    right: 48px;
+    display: flex;
+    justify-content: space-between;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    color: var(--muted);
+    text-transform: uppercase;
+  }
+
+  h1, h2, h3, .display {
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    line-height: 1.05;
+  }
+
+  .display {
+    font-size: clamp(64px, 9vw, 140px);
+    font-weight: 300;
+    font-variation-settings: "opsz" 144;
+  }
+
+  .display em {
+    font-style: italic;
+    font-weight: 400;
+    color: var(--accent);
+  }
+
+  h1 {
+    font-size: clamp(48px, 6vw, 88px);
+    font-weight: 400;
+    font-variation-settings: "opsz" 144;
+  }
+
+  h2 {
+    font-size: clamp(32px, 4vw, 56px);
+    font-weight: 400;
+    font-variation-settings: "opsz" 144;
+  }
+
+  h3 {
+    font-size: 24px;
+    font-weight: 500;
+  }
+
+  p, li {
+    font-size: 17px;
+    line-height: 1.55;
+    color: var(--ink);
+  }
+
+  .lead {
+    font-size: 22px;
+    line-height: 1.55;
+    color: var(--ink);
+    max-width: 720px;
+  }
+
+  .muted { color: var(--muted); }
+
+  .mono {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    letter-spacing: 0.05em;
+  }
+
+  .tag {
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 6px 12px;
+    border: 1px solid var(--line);
+    color: var(--ink);
+  }
+
+  .tag.accent {
+    background: var(--accent);
+    color: var(--paper);
+    border-color: var(--accent);
+  }
+
+  .rule {
+    height: 1px;
+    background: var(--line);
+    margin: 32px 0;
+  }
+
+  .rule-thick {
+    height: 4px;
+    background: var(--ink);
+    margin: 32px 0;
+  }
+
+  /* ============ SLIDE 1: TITLE ============ */
+  .slide-title {
+    background: var(--paper);
+    position: relative;
+  }
+
+  .slide-title .corner-meta {
+    position: absolute;
+    top: 48px;
+    left: 96px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .slide-title .title-block {
+    margin-top: 80px;
+  }
+
+  .slide-title h1.product-name {
+    font-size: clamp(120px, 16vw, 240px);
+    font-weight: 300;
+    line-height: 0.9;
+    letter-spacing: -0.04em;
+    font-variation-settings: "opsz" 144;
+  }
+
+  .slide-title h1.product-name em {
+    font-style: italic;
+    font-weight: 400;
+    color: var(--accent);
+  }
+
+  .slide-title .subtitle {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(28px, 3vw, 40px);
+    font-weight: 300;
+    font-style: italic;
+    font-variation-settings: "opsz" 144;
+    color: var(--muted);
+    max-width: 760px;
+    margin-top: 32px;
+    line-height: 1.3;
+  }
+
+  .slide-title .meta-row {
+    position: absolute;
+    bottom: 64px;
+    left: 96px;
+    right: 96px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    border-top: 1px solid var(--line);
+    padding-top: 24px;
+  }
+
+  .slide-title .meta-item {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+
+  .slide-title .meta-item span {
+    display: block;
+    color: var(--muted);
+    margin-bottom: 4px;
+    font-size: 9px;
+  }
+
+  /* ============ SLIDE 2: TENSION ============ */
+  .tension-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+    margin-top: 40px;
+  }
+
+  .tension-grid .left .pull-quote {
+    font-family: 'Fraunces', serif;
+    font-size: 52px;
+    font-weight: 300;
+    font-style: italic;
+    line-height: 1.15;
+    font-variation-settings: "opsz" 144;
+  }
+
+  .tension-grid .left .pull-quote em {
+    color: var(--accent);
+    font-style: italic;
+  }
+
+  .quote-attribution {
+    margin-top: 24px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    text-transform: uppercase;
+  }
+
+  /* ============ SLIDE 3: STATS ============ */
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    margin-top: 64px;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .stat-cell {
+    padding: 48px 40px;
+    border-right: 1px solid var(--line);
+  }
+
+  .stat-cell:last-child { border-right: none; }
+
+  .stat-cell .stat-number {
+    font-family: 'Fraunces', serif;
+    font-size: 88px;
+    font-weight: 300;
+    font-variation-settings: "opsz" 144;
+    line-height: 1;
+    color: var(--ink);
+  }
+
+  .stat-cell .stat-number em {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  .stat-cell .stat-label {
+    margin-top: 16px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+
+  .stat-cell .stat-source {
+    margin-top: 12px;
+    font-size: 12px;
+    color: var(--muted);
+    font-style: italic;
+  }
+
+  /* ============ SLIDE: PAIN POINTS ============ */
+  .pain-list {
+    display: grid;
+    gap: 32px;
+    margin-top: 40px;
+  }
+
+  .pain-item {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 32px;
+    padding: 28px 0;
+    border-top: 1px solid var(--line);
+  }
+
+  .pain-item:last-child {
+    border-bottom: 1px solid var(--line);
+  }
+
+  .pain-number {
+    font-family: 'Fraunces', serif;
+    font-size: 44px;
+    font-weight: 300;
+    font-style: italic;
+    color: var(--accent);
+    line-height: 1;
+    font-variation-settings: "opsz" 144;
+  }
+
+  .pain-content .pain-headline {
+    font-family: 'Fraunces', serif;
+    font-size: 26px;
+    font-weight: 400;
+    line-height: 1.25;
+    margin-bottom: 12px;
+  }
+
+  .pain-quote {
+    font-style: italic;
+    color: var(--ink);
+    font-size: 16px;
+    line-height: 1.5;
+    padding-left: 20px;
+    border-left: 2px solid var(--accent);
+    margin-top: 12px;
+  }
+
+  .pain-source {
+    margin-top: 8px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    text-transform: uppercase;
+  }
+
+  /* ============ SLIDE: COMPETITORS ============ */
+  .comp-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 40px;
+  }
+
+  .comp-table th, .comp-table td {
+    padding: 18px 16px;
+    text-align: left;
+    border-bottom: 1px solid var(--line);
+    font-size: 14px;
+  }
+
+  .comp-table th {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-weight: 500;
+    border-bottom: 2px solid var(--ink);
+  }
+
+  .comp-table tr.ours {
+    background: var(--ink);
+    color: var(--paper);
+  }
+
+  .comp-table tr.ours td {
+    color: var(--paper);
+    font-weight: 500;
+  }
+
+  .comp-table tr.ours td:first-child {
+    color: var(--highlight);
+  }
+
+  .check { color: var(--accent-2); font-weight: 700; }
+  .cross { color: var(--accent); font-weight: 700; }
+  .partial { color: var(--muted); font-weight: 500; }
+
+  /* ============ SLIDE: SOLUTION ============ */
+  .solution-hero {
+    text-align: left;
+  }
+
+  .solution-hero .big-statement {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(56px, 7vw, 96px);
+    font-weight: 300;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    font-variation-settings: "opsz" 144;
+    max-width: 1100px;
+  }
+
+  .solution-hero .big-statement em {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  .solution-hero .underline-statement {
+    margin-top: 48px;
+    font-size: 22px;
+    line-height: 1.5;
+    color: var(--muted);
+    max-width: 800px;
+  }
+
+  /* ============ SLIDE: AGENT DIAGRAM ============ */
+  .agent-diagram {
+    margin-top: 60px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  .agent-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+  }
+
+  .agent-card {
+    border: 1px solid var(--line);
+    padding: 24px;
+    background: var(--paper-2);
+    position: relative;
+  }
+
+  .agent-card .agent-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    color: var(--muted);
+    text-transform: uppercase;
+  }
+
+  .agent-card .agent-name {
+    font-family: 'Fraunces', serif;
+    font-size: 28px;
+    font-weight: 400;
+    margin-top: 12px;
+    line-height: 1.1;
+  }
+
+  .agent-card .agent-role {
+    margin-top: 12px;
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+
+  .observer-card {
+    border: 2px solid var(--accent);
+    padding: 32px;
+    background: var(--ink);
+    color: var(--paper);
+    position: relative;
+  }
+
+  .observer-card .observer-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--highlight);
+  }
+
+  .observer-card .observer-name {
+    font-family: 'Fraunces', serif;
+    font-size: 44px;
+    font-weight: 400;
+    font-style: italic;
+    margin-top: 12px;
+    font-variation-settings: "opsz" 144;
+  }
+
+  .observer-card .observer-desc {
+    margin-top: 16px;
+    color: var(--paper);
+    opacity: 0.85;
+    font-size: 16px;
+    line-height: 1.6;
+    max-width: 800px;
+  }
+
+  /* ============ SLIDE: OBSERVER DETAIL ============ */
+  .observer-detail {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    margin-top: 48px;
+  }
+
+  .observer-jobs {
+    list-style: none;
+    padding: 0;
+  }
+
+  .observer-jobs li {
+    padding: 20px 0;
+    border-bottom: 1px solid var(--line);
+    display: grid;
+    grid-template-columns: 32px 1fr;
+    gap: 16px;
+  }
+
+  .observer-jobs li:first-child { padding-top: 0; }
+  .observer-jobs li:last-child { border-bottom: none; }
+
+  .observer-jobs .job-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    color: var(--accent);
+    font-weight: 700;
+  }
+
+  .observer-jobs .job-text {
+    font-size: 17px;
+    line-height: 1.5;
+  }
+
+  .observer-jobs .job-text strong {
+    font-weight: 600;
+    font-family: 'Fraunces', serif;
+    font-size: 20px;
+    display: block;
+    margin-bottom: 6px;
+  }
+
+  .code-block {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 28px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    line-height: 1.7;
+    border: 1px solid var(--line);
+    overflow-x: auto;
+  }
+
+  .code-block .key { color: var(--highlight); }
+  .code-block .str { color: #f4a682; }
+  .code-block .comment { color: var(--muted); }
+
+  /* ============ SLIDE: TIER ARCHITECTURE ============ */
+  .tier-stack {
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .tier-row {
+    display: grid;
+    grid-template-columns: 100px 200px 1fr 220px;
+    gap: 24px;
+    padding: 28px 32px;
+    border: 1px solid var(--line);
+    align-items: center;
+    background: var(--paper-2);
+  }
+
+  .tier-row.tier-1 {
+    background: var(--ink);
+    color: var(--paper);
+    border-color: var(--ink);
+  }
+
+  .tier-row.tier-1 .tier-label,
+  .tier-row.tier-1 .tier-coverage {
+    color: var(--paper);
+  }
+
+  .tier-row.tier-1 .tier-tag {
+    color: var(--highlight);
+  }
+
+  .tier-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+
+  .tier-label {
+    font-family: 'Fraunces', serif;
+    font-size: 24px;
+    font-weight: 500;
+  }
+
+  .tier-coverage {
+    font-size: 15px;
+    line-height: 1.5;
+  }
+
+  .tier-mechanism {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    text-align: right;
+  }
+
+  .tier-row.tier-1 .tier-mechanism {
+    color: var(--paper);
+    opacity: 0.7;
+  }
+
+  /* ============ SLIDE: WORKFLOW ============ */
+  .workflow {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0;
+    margin-top: 48px;
+  }
+
+  .flow-step {
+    display: grid;
+    grid-template-columns: 60px 1fr;
+    gap: 32px;
+    padding: 24px 0;
+    border-top: 1px solid var(--line);
+    position: relative;
+  }
+
+  .flow-step:last-child { border-bottom: 1px solid var(--line); }
+
+  .flow-num {
+    font-family: 'Fraunces', serif;
+    font-size: 32px;
+    font-weight: 300;
+    font-style: italic;
+    color: var(--accent);
+    line-height: 1;
+    font-variation-settings: "opsz" 144;
+  }
+
+  .flow-content .flow-title {
+    font-family: 'Fraunces', serif;
+    font-size: 22px;
+    font-weight: 500;
+    margin-bottom: 6px;
+  }
+
+  .flow-content .flow-desc {
+    font-size: 15px;
+    line-height: 1.5;
+    color: var(--muted);
+  }
+
+  /* ============ SLIDE: MARKET ============ */
+  .market-hero {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    margin-top: 40px;
+    align-items: start;
+  }
+
+  .market-stat-big {
+    font-family: 'Fraunces', serif;
+    font-size: 180px;
+    font-weight: 300;
+    line-height: 0.9;
+    font-variation-settings: "opsz" 144;
+    color: var(--ink);
+  }
+
+  .market-stat-big em {
+    font-style: italic;
+    color: var(--accent);
+    font-weight: 400;
+  }
+
+  .market-detail .market-line {
+    padding: 16px 0;
+    border-bottom: 1px solid var(--line);
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+
+  .market-detail .market-line:first-child {
+    border-top: 1px solid var(--line);
+  }
+
+  .market-detail .market-label {
+    font-size: 15px;
+    color: var(--muted);
+  }
+
+  .market-detail .market-value {
+    font-family: 'Fraunces', serif;
+    font-size: 22px;
+    font-weight: 500;
+  }
+
+  /* ============ SLIDE: POSITIONING ============ */
+  .position-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    height: 580px;
+    border: 1px solid var(--line);
+    margin-top: 48px;
+    position: relative;
+  }
+
+  .position-cell {
+    padding: 32px;
+    border-right: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: 8px;
+  }
+
+  .position-cell:nth-child(2n) { border-right: none; }
+  .position-cell:nth-last-child(-n+2) { border-bottom: none; }
+
+  .position-cell .comp-name {
+    font-family: 'Fraunces', serif;
+    font-size: 22px;
+    font-weight: 400;
+    line-height: 1.2;
+  }
+
+  .position-cell .comp-meta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    color: var(--muted);
+    text-transform: uppercase;
+  }
+
+  .position-cell.ours {
+    background: var(--ink);
+    color: var(--paper);
+  }
+
+  .position-cell.ours .comp-name {
+    color: var(--highlight);
+    font-style: italic;
+    font-size: 28px;
+  }
+
+  .position-cell.ours .comp-meta {
+    color: var(--paper);
+    opacity: 0.7;
+  }
+
+  .axis-x, .axis-y {
+    position: absolute;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .axis-x.top { top: -32px; left: 50%; transform: translateX(-50%); }
+  .axis-x.left { top: -32px; left: 0; }
+  .axis-x.right { top: -32px; right: 0; }
+  .axis-y.bottom { bottom: 0; left: -120px; transform: rotate(-90deg); transform-origin: bottom right; }
+  .axis-y.top { top: 80px; left: -120px; transform: rotate(-90deg); transform-origin: top right; }
+
+  /* ============ SLIDE: METRICS ============ */
+  .metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+    margin-top: 48px;
+  }
+
+  .metric-cell {
+    border: 1px solid var(--line);
+    padding: 32px;
+    background: var(--paper-2);
+  }
+
+  .metric-cell .metric-value {
+    font-family: 'Fraunces', serif;
+    font-size: 56px;
+    font-weight: 300;
+    line-height: 1;
+    font-variation-settings: "opsz" 144;
+    color: var(--accent);
+  }
+
+  .metric-cell .metric-label {
+    margin-top: 12px;
+    font-family: 'Fraunces', serif;
+    font-size: 18px;
+    font-weight: 500;
+  }
+
+  .metric-cell .metric-why {
+    margin-top: 8px;
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+
+  /* ============ SLIDE: TIMELINE ============ */
+  .timeline {
+    margin-top: 48px;
+    border-top: 1px solid var(--line);
+  }
+
+  .timeline-row {
+    display: grid;
+    grid-template-columns: 100px 1fr 1fr;
+    gap: 32px;
+    padding: 20px 0;
+    border-bottom: 1px solid var(--line);
+    align-items: baseline;
+  }
+
+  .timeline-row .week {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.15em;
+    color: var(--accent);
+    text-transform: uppercase;
+  }
+
+  .timeline-row .milestone {
+    font-family: 'Fraunces', serif;
+    font-size: 18px;
+    font-weight: 500;
+  }
+
+  .timeline-row .detail {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+
+  /* ============ SLIDE: ASK ============ */
+  .ask-hero {
+    text-align: left;
+    max-width: 900px;
+  }
+
+  .ask-hero h1 {
+    font-size: clamp(72px, 10vw, 144px);
+    font-weight: 300;
+    line-height: 0.95;
+    letter-spacing: -0.03em;
+    font-variation-settings: "opsz" 144;
+  }
+
+  .ask-hero h1 em {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  .ask-list {
+    list-style: none;
+    margin-top: 48px;
+    padding: 0;
+  }
+
+  .ask-list li {
+    padding: 20px 0;
+    border-bottom: 1px solid var(--line);
+    font-family: 'Fraunces', serif;
+    font-size: 24px;
+    font-weight: 400;
+    display: grid;
+    grid-template-columns: 60px 1fr;
+    gap: 16px;
+  }
+
+  .ask-list .ask-num {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  /* ============ SLIDE: NOT BUILDING ============ */
+  .not-list {
+    margin-top: 40px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+  }
+
+  .not-card {
+    border: 1px solid var(--line);
+    padding: 28px;
+    background: var(--paper-2);
+  }
+
+  .not-card .strikethrough {
+    font-family: 'Fraunces', serif;
+    font-size: 24px;
+    font-weight: 400;
+    text-decoration: line-through;
+    text-decoration-color: var(--accent);
+    text-decoration-thickness: 2px;
+    color: var(--muted);
+    margin-bottom: 12px;
+  }
+
+  .not-card .reason {
+    font-size: 14px;
+    line-height: 1.55;
+    color: var(--ink);
+  }
+
+  /* ============ CLOSING ============ */
+  .closing {
+    text-align: center;
+    padding: 160px 96px;
+    background: var(--ink);
+    color: var(--paper);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .closing .end-mark {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(80px, 12vw, 200px);
+    font-weight: 300;
+    font-style: italic;
+    color: var(--highlight);
+    line-height: 1;
+    font-variation-settings: "opsz" 144;
+  }
+
+  .closing .end-tag {
+    margin-top: 48px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    color: var(--paper);
+    opacity: 0.6;
+    text-transform: uppercase;
+  }
+
+  /* Print / export */
+  @media print {
+    .slide {
+      page-break-after: always;
+      min-height: auto;
+      height: 100vh;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="deck">
+
+  <!-- ====================== SLIDE 1: TITLE ====================== -->
+  <section class="slide slide-title">
+    <div class="corner-meta">An internal pitch · v0.2 · May 2026</div>
+
+    <div class="title-block">
+      <h1 class="product-name">The <em>Panel</em>.</h1>
+      <div class="subtitle">The only mock interview that interviews you the way a real company does — with a panel, not a chatbot.</div>
+    </div>
+
+    <div class="meta-row">
+      <div class="meta-item"><span>Built by</span>Alex Peng</div>
+      <div class="meta-item"><span>Layer</span>L2 · Coordination</div>
+      <div class="meta-item"><span>Market</span>North America</div>
+      <div class="meta-item"><span>Runtime</span>Claude Code</div>
+    </div>
+  </section>
+
+  <!-- ====================== SLIDE 2: TENSION ====================== -->
+  <section class="slide">
+    <div class="slide-label">01 · The tension</div>
+    <div class="slide-number">02 / 16</div>
+
+    <div class="tension-grid">
+      <div class="left">
+        <div class="pull-quote">
+          One AI<br>asking generic questions<br>is <em>not</em> a job interview.
+        </div>
+        <div class="quote-attribution">— What every candidate already knows</div>
+      </div>
+      <div class="right">
+        <p class="lead">A real interview at Google, Amazon, McKinsey or Goldman is four to six different humans, in sequence, with their own agendas, comparing notes about <em>you</em>.</p>
+        <div class="rule"></div>
+        <p class="lead">Every product on the market today flattens that into a single chatbot. The result is candidates who feel "ready" and then fail.</p>
+      </div>
+    </div>
+
+    <div class="slide-footer">
+      <span>The Panel · Pitch v0.2</span>
+      <span>§ Tension</span>
+    </div>
+  </section>
+
+  <!-- ====================== SLIDE 3: PROOF (USER PAIN) ====================== -->
+  <section class="slide">
+    <div class="slide-label">02 · The pain is verified</div>
+    <div class="slide-number">03 / 16</div>
+
+    <h2>It's not us saying this.<br>It's their own users.</h2>
+
+    <div class="pain-list">
+      <div class="pain-item">
+        <div class="pain-number">01</div>
+        <div class="pain-content">
+          <div class="pain-headline">"The AI doesn't follow up. It just runs a script."</div>
+          <div class="pain-quote">"AI interviewers cannot meaningfully adapt the interview: they do not create new questions, reorder or skip questions, or adapt questions that seem irrelevant."</div>
+          <div class="pain-source">Nielsen Norman Group · UX Research Study · Jan 2026</div>
+        </div>
+      </div>
+
+      <div class="pain-item">
+        <div class="pain-number">02</div>
+        <div class="pain-content">
+          <div class="pain-headline">"The answers are surface level. Not context-aware."</div>
+          <div class="pain-quote">"The AI gives generic, useless answers that are not context-aware. The 'advanced features' they advertise simply do not work."</div>
+          <div class="pain-source">Trustpilot · Final Round AI · Daniel Timponi · Feb 2026</div>
+        </div>
+      </div>
+
+      <div class="pain-item">
+        <div class="pain-number">03</div>
+        <div class="pain-content">
+          <div class="pain-headline">"I practiced. I felt ready. I still failed."</div>
+          <div class="pain-quote">"Candidates practice 30 times with ChatGPT, score themselves 4.5/5, walk into the real interview confident — and still don't get the offer."</div>
+          <div class="pain-source">Revarta competitive analysis · 2026</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide-footer">
+      <span>Sources: nngroup.com · trustpilot.com/review/finalroundai.com · revarta.com</span>
+      <span>§ Pain Points</span>
+    </div>
+  </section>
+
+  <!-- ====================== SLIDE 4: MARKET ====================== -->
+  <section class="slide">
+    <div class="slide-label">03 · The market</div>
+    <div class="slide-number">04 / 16</div>
+
+    <h2>The category is real. The leader is broken.</h2>
+
+    <div class="market-hero">
+      <div>
+        <div class="market-stat-big">$15<em>.24</em>B</div>
+        <div class="mono muted" style="margin-top:16px;">AI in Recruitment market by 2030<br>24.8% CAGR · Grand View Research</div>
+      </div>
+      <div class="market-detail">
+        <div class="market-line">
+          <span class="market-label">North America market share</span>
+          <span class="market-value">37.5%</span>
+        </div>
+        <div class="market-line">
+          <span class="market-label">Final Round AI · Trustpilot rating</span>
+          <span class="market-value">3.6 / 5</span>
+        </div>
+        <div class="market-line">
+          <span class="market-label">Final Round AI · 1-star reviews</span>
+          <span class="market-value">20%</span>
+        </div>
+        <div class="market-line">
+          <span class="market-label">Company support response time</span>
+          <span class="market-value">>1 month</span>
+        </div>
+        <div class="market-line">
+          <span class="market-label">Interviewing.io · per-session cost</span>
+          <span class="market-value">$225</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide-footer">
+      <span>Source: Grand View Research; Trustpilot (248 reviews, May 2026); Market.us</span>
+      <span>§ Market</span>
+    </div>
+  </section>
+
+  <!-- ====================== SLIDE 5: SOLUTION ====================== -->
+  <section class="slide">
+    <div class="slide-label">04 · The proposition</div>
+    <div class="slide-number">05 / 16</div>
+
+    <div class="solution-hero">
+      <div class="big-statement">
+        Build the <em>panel</em>.<br>Not another chatbot.
+      </div>
+      <div class="underline-statement">
+        Four AI interviewers in sequence. A fifth agent watching everything. A committee at the end that debates whether to hire you. The whole architecture mirrors how hiring actually works.
+      </div>
+    </div>
+
+    <div class="slide-footer">
+      <span>L2 · Multi-agent coordination is the product, not the plumbing</span>
+      <span>§ Solution</span>
+    </div>
+  </section>
+
+  <!-- ====================== SLIDE 6: AGENTS ====================== -->
+  <section class="slide">
+    <div class="slide-label">05 · The cast</div>
+    <div class="slide-number">06 / 16</div>
+
+    <h2>Five agents. One hiring loop.</h2>
+    <p class="lead muted" style="margin-top:16px;">Each interviewer has their own personality, agenda, and evaluation criteria. They hand off context to each other. They argue about you at the end.</p>
+
+    <div class="agent-diagram">
+      <div class="agent-row">
+        <div class="agent-card">
+          <div class="agent-num">Round 1</div>
+          <div class="agent-name">Recruiter</div>
+          <div class="agent-role">Motivation, story coherence, basic fit. Warm but efficient. Listens more than talks.</div>
+        </div>
+        <div class="agent-card">
+          <div class="agent-num">Round 2</div>
+          <div class="agent-name">Hiring<br>Manager</div>
+          <div class="agent-role">Behavioral and leadership. "Tell me about a time you..." Probes for substance behind stories.</div>
+        </div>
+        <div class="agent-card">
+          <div class="agent-num">Round 3</div>
+          <div class="agent-name">Domain<br>Expert</div>
+          <div class="agent-role">Technical or domain depth. Calibrated to the company's actual standards.</div>
+        </div>
+        <div class="agent-card">
+          <div class="agent-num">Round 4</div>
+          <div class="agent-name">Bar<br>Raiser</div>
+          <div class="agent-role">Adversarial. Targets the weaknesses surfaced earlier. Raises the bar for "hire."</div>
+        </div>
+      </div>
+
+      <div class="observer-card">
+        <div class="observer-label">Always running · The product's edge</div>
+        <div class="observer-name">The Observer</div>
+        <div class="observer-desc">Watches every answer. Maintains a candidate dossier. Routes targeted probes to the current interviewer. Catches contradictions across rounds. Feeds the final committee debate with concrete evidence — not vibes.</div>
+      </div>
+    </div>
+
+    <div class="slide-footer">
+      <span>The Observer is the L2 coordination layer made visible</span>
+      <span>§ Cast</span>
+    </div>
+  </section>
+
+  <!-- ====================== SLIDE 7: OBSERVER DEEP DIVE ====================== -->
+  <section class="slide">
+    <div class="slide-label">06 · The differentiator</div>
+    <div class="slide-number">07 / 16</div>
+
+    <h2>The Observer is why this works.</h2>
+    <p class="lead muted" style="margin-top:16px;">Single-AI tools can't follow up because they have no memory of intent. The Observer is structural memory — it lives between agents and makes the panel feel like a real interview.</p>
+
+    <div class="observer-detail">
+      <ul class="observer-jobs">
+        <li>
+          <span class="job-num">01</span>
+          <span class="job-text"><strong>Maintains a dossier</strong>Claims made, stories told, strengths shown, weaknesses exposed, topics dodged.</span>
+        </li>
+        <li>
+          <span class="job-num">02</span>
+          <span class="job-text"><strong>Feeds targeted probes</strong>"Candidate claimed she led migration — Tech Lead should drill into specific decisions she made."</span>
+        </li>
+        <li>
+          <span class="job-num">03</span>
+          <span class="job-text"><strong>Catches contradictions</strong>"Said she loves fast-paced to Recruiter, said she prefers planning to HM — flag for Bar Raiser."</span>
+        </li>
+        <li>
+          <span class="job-num">04</span>
+          <span class="job-text"><strong>Hands off cleanly</strong>Generates structured notes between rounds: what we learned, what to dig into, what to leave alone.</span>
+        </li>
+        <li>
+          <span class="job-num">05</span>
+          <span class="job-text"><strong>Powers the committee</strong>Presents evidence-based dossier so agents debate facts, not impressions.</span>
+        </li>
+      </ul>
+
+      <div class="code-block">
+<span class="comment">// Observer output after each candidate answer</span>
+{
+  <span class="key">"new_claims"</span>: [<span class="str">"led team of 5"</span>],
+  <span class="key">"strengths_shown"</span>: [<span class="str">"clear communication"</span>],
+  <span class="key">"weaknesses_exposed"</span>: [<span class="str">"vague on metrics"</span>],
+  <span class="key">"topics_dodged"</span>: [<span class="str">"conflict resolution"</span>],
+  <span class="key">"contradictions_flagged"</span>: [],
+  <span class="key">"probe_for_current_interviewer"</span>:
+    <span class="str">"Ask for specific metrics</span>
+<span class="str">     on team impact"</span>,
+  <span class="key">"note_for_next_round"</span>:
+    <span class="str">"Has not given concrete</span>
+<span class="str">     examples yet"</span>
+}
+      </div>
+    </div>
+
+    <div class="slide-footer">
+      <span>This is the L2 thesis in product form: coordination is the moat</span>
+      <span>§ Observer</span>
+    </div>
+  </section>
+
+  <!-- ====================== SLIDE 8: THREE-TIER ARCHITECTURE ====================== -->
+  <section class="slide">
+    <div class="slide-label">07 · The coverage architecture</div>
+    <div class="slide-number">08 / 16</div>
+
+    <h2>Three tiers. Every company covered.</h2>
+    <p class="lead muted" style="margin-top:16px;">Famous companies get the white-glove treatment. Everyone else gets a smart industry template — boosted at runtime with the specific company's public data.</p>
+
+    <div class="tier-stack">
+      <div class="tier-row tier-1">
+        <div class="tier-tag">Tier 1</div>
+        <div class="tier-label">Marquee</div>
+        <div class="tier-coverage">~15 hand-written profiles. Google, Meta, Amazon, Apple, Microsoft, Netflix, OpenAI, Anthropic, McKinsey, BCG, Bain, Goldman, JPM, Tesla, NVIDIA.</div>
+        <div class="tier-mechanism">Hand-written agents</div>
+      </div>
+      <div class="tier-row">
+        <div class="tier-tag">Tier 2</div>
+        <div class="tier-label">Curated</div>
+        <div class="tier-coverage">~200 NA major employers across tech, finance, healthcare, consulting, consumer goods, media, retail. Each with a curated company context file.</div>
+        <div class="tier-mechanism">Industry templates +<br>curated context</div>
+      </div>
+      <div class="tier-row">
+        <div class="tier-tag">Tier 3</div>
+        <div class="tier-label">Long tail</div>
+        <div class="tier-coverage">Any company the user enters. Industry classifier runs, public web data is fetched, company context is built dynamically at runtime.</div>
+        <div class="tier-mechanism">Industry templates +<br>runtime enrichment</div>
+      </div>
+    </div>
+
+    <div class="slide-footer">
+      <span>Defensible: company-specific data + multi-agent architecture compound</span>
+      <span>§ Architecture</span>
+    </div>
+  </section>
+
+  <!-- ====================== SLIDE 9: WORKFLOW ====================== -->
+  <section class="slide">
+    <div class="slide-label">08 · The workflow</div>
+    <div class="slide-number">09 / 16</div>
+
+    <h2>How a session actually runs.</h2>
+
+    <div class="workflow">
+      <div class="flow-step">
+        <div class="flow-num">01</div>
+        <div class="flow-content">
+          <div class="flow-title">User selects company or industry</div>
+          <div class="flow-desc">System routes to Tier 1, 2, or 3. Loads the right agent profile set. User uploads resume.</div>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-num">02</div>
+        <div class="flow-content">
+          <div class="flow-title">Round 1 — Recruiter</div>
+          <div class="flow-desc">Conversational screen. Observer reads every answer, updates dossier in the background, feeds probes back to the Recruiter.</div>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-num">03</div>
+        <div class="flow-content">
+          <div class="flow-title">Handoff screen — the magic moment</div>
+          <div class="flow-desc">User sees the Observer's note to the next interviewer. "Here's what we learned about you." Trust and transparency built in.</div>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-num">04</div>
+        <div class="flow-content">
+          <div class="flow-title">Rounds 2–4 — HM, Domain Expert, Bar Raiser</div>
+          <div class="flow-desc">Each interviewer arrives armed with everything the Observer has built. Probes get sharper. Contradictions get caught. By Round 4, the Bar Raiser is hunting weaknesses surfaced earlier.</div>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-num">05</div>
+        <div class="flow-content">
+          <div class="flow-title">Committee deliberation</div>
+          <div class="flow-desc">All four agents convene. Observer presents the dossier. They debate. They argue. User watches it happen live.</div>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-num">06</div>
+        <div class="flow-content">
+          <div class="flow-title">Final debrief — shareable</div>
+          <div class="flow-desc">Decision (Strong Hire / Hire / No Hire / Strong No Hire). Evidence-based strengths and concerns. Action plan. Shareable LinkedIn debrief — built-in viral mechanic for company exposure.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide-footer">
+      <span>The handoff and committee screens are the demo magic</span>
+      <span>§ Workflow</span>
+    </div>
+  </section>
+
+  <!-- ====================== SLIDE 10: POSITIONING ====================== -->
+  <section class="slide">
+    <div class="slide-label">09 · Positioning</div>
+    <div class="slide-number">10 / 16</div>
+
+    <h2>The whitespace is empty.</h2>
+    <p class="lead muted" style="margin-top:16px;">Every existing competitor is one AI asking generic questions. The "calibrated × multi-agent" quadrant has no incumbent.</p>
+
+    <div class="position-grid">
+      <div class="axis-x left">Single-agent</div>
+      <div class="axis-x right">Multi-agent</div>
+      <div class="axis-y top">Calibrated feedback</div>
+      <div class="axis-y bottom">Generic feedback</div>
+
+      <div class="position-cell">
+        <div class="comp-name">Final Round AI<br>Revarta · Yoodli · Huru</div>
+        <div class="comp-meta">$25–149/mo · Single-agent</div>
+      </div>
+
+      <div class="position-cell ours">
+        <div class="comp-meta">⟶ Empty quadrant</div>
+        <div class="comp-name">The Panel</div>
+        <div class="comp-meta">Calibrated × Multi-agent</div>
+      </div>
+
+      <div class="position-cell">
+        <div class="comp-name">ChatGPT<br>Interviews-by-AI</div>
+        <div class="comp-meta">Free · Generic</div>
+      </div>
+
+      <div class="position-cell">
+        <div class="comp-name">Pramp (human peer)<br>Interviewing.io (human expert)</div>
+        <div class="comp-meta">$0–225/session · Human-powered</div>
+      </div>
+    </div>
+
+    <div class="slide-footer">
+      <span>No competitor in the calibrated × multi-agent quadrant as of May 2026</span>
+      <span>§ Positioning</span>
+    </div>
+  </section>
+
+  <!-- ====================== SLIDE 11: COMPETITORS TABLE ====================== -->
+  <section class="slide">
+    <div class="slide-label">10 · Direct comparison</div>
+    <div class="slide-number">11 / 16</div>
+
+    <h2>Feature by feature.</h2>
+
+    <table class="comp-table">
+      <thead>
+        <tr>
+          <th></th>
+          <th>Architecture</th>
+          <th>Follows up well</th>
+          <th>Real loop</th>
+          <th>Company-specific</th>
+          <th>Trust</th>
+          <th>Cost</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Final Round AI</strong></td>
+          <td>Single AI</td>
+          <td class="cross">✕</td>
+          <td class="cross">✕</td>
+          <td class="cross">Generic</td>
+          <td class="cross">3.6 / 5</td>
+          <td>$25–149/mo</td>
+        </tr>
+        <tr>
+          <td><strong>Revarta</strong></td>
+          <td>Single AI</td>
+          <td class="partial">~</td>
+          <td class="cross">✕</td>
+          <td class="cross">No</td>
+          <td class="partial">OK</td>
+          <td>$49/mo</td>
+        </tr>
+        <tr>
+          <td><strong>Yoodli</strong></td>
+          <td>Single AI</td>
+          <td class="cross">Speech only</td>
+          <td class="cross">✕</td>
+          <td class="cross">No</td>
+          <td class="partial">OK</td>
+          <td>$8–20/mo</td>
+        </tr>
+        <tr>
+          <td><strong>Pramp</strong></td>
+          <td>Human peer</td>
+          <td class="partial">Variable</td>
+          <td class="cross">✕</td>
+          <td class="cross">No</td>
+          <td class="partial">OK</td>
+          <td>Free</td>
+        </tr>
+        <tr>
+          <td><strong>Interviewing.io</strong></td>
+          <td>Human expert</td>
+          <td class="check">✓</td>
+          <td class="cross">Single round</td>
+          <td class="partial">Limited</td>
+          <td class="check">High</td>
+          <td>$225/session</td>
+        </tr>
+        <tr class="ours">
+          <td><strong>The Panel</strong></td>
+          <td>Multi-agent + Observer</td>
+          <td>✓ Observer-driven</td>
+          <td>✓ Full 4-round loop</td>
+          <td>✓ 3-tier coverage</td>
+          <td>Clean v1</td>
+          <td>Free demo</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="slide-footer">
+      <span>Source data: Trustpilot, Product Hunt, Lodely (March 2026), Prospeo (2026)</span>
+      <span>§ Comparison</span>
+    </div>
+  </section>
+
+  <!-- ====================== SLIDE 12: WHAT WE'RE NOT BUILDING ====================== -->
+  <section class="slide">
+    <div class="slide-label">11 · The discipline</div>
+    <div class="slide-number">12 / 16</div>
+
+    <h2>What we are <em style="font-family:Fraunces,serif;font-style:italic;color:var(--accent);">not</em> building.</h2>
+    <p class="lead muted" style="margin-top:16px;">Saying no to the obvious move is half the strategy. The market is full of products trying to do everything badly.</p>
+
+    <div class="not-list">
+      <div class="not-card">
+        <div class="strikethrough">Real-time interview copilot</div>
+        <div class="reason">Contradicts our positioning ("get ready" vs "cheat live"). It's a latency engineering problem, not a multi-agent intelligence problem. Our edge doesn't apply. Plus: ethics, detection arms race, reputation risk.</div>
+      </div>
+      <div class="not-card">
+        <div class="strikethrough">Voice and video v1</div>
+        <div class="reason">Text-first ships in weeks, voice ships in months. Voice and video are v1.1. The multi-agent magic works in text and is more demonstrable.</div>
+      </div>
+      <div class="not-card">
+        <div class="strikethrough">Hiring-side product</div>
+        <div class="reason">Candidate-side has cleaner whitespace and better viral mechanics for exposure. Enterprise sales cycle would burn our timeline.</div>
+      </div>
+      <div class="not-card">
+        <div class="strikethrough">Profitability in v1</div>
+        <div class="reason">Goal is exposure and market validation, not revenue. Free meaningful tier. Monetization comes after we own the "panel interview" positioning.</div>
+      </div>
+    </div>
+
+    <div class="slide-footer">
+      <span>Constraint is the design</span>
+      <span>§ Anti-roadmap</span>
+    </div>
+  </section>
+
+  <!-- ====================== SLIDE 13: METRICS ====================== -->
+  <section class="slide">
+    <div class="slide-label">12 · Success metrics</div>
+    <div class="slide-number">13 / 16</div>
+
+    <h2>What 90 days of success looks like.</h2>
+
+    <div class="metrics-grid">
+      <div class="metric-cell">
+        <div class="metric-value">1,000</div>
+        <div class="metric-label">Completed interview loops</div>
+        <div class="metric-why">Demand validation — proof people use the whole 4-round product, not just the first turn.</div>
+      </div>
+      <div class="metric-cell">
+        <div class="metric-value">≥50%</div>
+        <div class="metric-label">Loop completion rate</div>
+        <div class="metric-why">Indicates the experience is engaging enough that users finish all four rounds, not bail at round 2.</div>
+      </div>
+      <div class="metric-cell">
+        <div class="metric-value">≥4.2 / 5</div>
+        <div class="metric-label">"Felt like a real interview"</div>
+        <div class="metric-why">The core differentiation. If we're not winning here, we're not winning anywhere.</div>
+      </div>
+      <div class="metric-cell">
+        <div class="metric-value">≥10%</div>
+        <div class="metric-label">Debriefs shared externally</div>
+        <div class="metric-why">Built-in viral mechanic. Every shared debrief is free company exposure on LinkedIn or X.</div>
+      </div>
+    </div>
+
+    <div class="slide-footer">
+      <span>Exposure first. Profit later.</span>
+      <span>§ Metrics</span>
+    </div>
+  </section>
+
+  <!-- ====================== SLIDE 14: TIMELINE ====================== -->
+  <section class="slide">
+    <div class="slide-label">13 · The build</div>
+    <div class="slide-number">14 / 16</div>
+
+    <h2>Twelve weeks from zero to public demo.</h2>
+    <p class="lead muted" style="margin-top:16px;">Built entirely in Claude Code. Engineering team support requested for hosting, frontend polish, and v1.1 voice.</p>
+
+    <div class="timeline">
+      <div class="timeline-row">
+        <div class="week">Week 1–2</div>
+        <div class="milestone">Foundation</div>
+        <div class="detail">Folder scaffolding. Industry templates (tech, finance, consulting) drafted. Observer agent + dossier mechanism working end-to-end on one industry.</div>
+      </div>
+      <div class="timeline-row">
+        <div class="week">Week 3–4</div>
+        <div class="milestone">Full loop</div>
+        <div class="detail">Sequential 4-round loop with handoffs working in CLI. Committee deliberation produces written debrief.</div>
+      </div>
+      <div class="timeline-row">
+        <div class="week">Week 5–6</div>
+        <div class="milestone">Tier 1 + Tier 2</div>
+        <div class="detail">First marquee company (Google) hand-written. Curated DB for ~20 priority Tier 2 companies. Industry classifier built.</div>
+      </div>
+      <div class="timeline-row">
+        <div class="week">Week 7–8</div>
+        <div class="milestone">Tier 3 + frontend</div>
+        <div class="detail">Runtime web enrichment pipeline. Frontend chat UI with dossier side panel. Handoff screen UX.</div>
+      </div>
+      <div class="timeline-row">
+        <div class="week">Week 9–10</div>
+        <div class="milestone">Marquee expansion</div>
+        <div class="detail">Remaining marquee companies added (target: 15 total). Polish UX. Internal demo to supervisor + team.</div>
+      </div>
+      <div class="timeline-row">
+        <div class="week">Week 11–12</div>
+        <div class="milestone">Launch</div>
+        <div class="detail">Bug fixes, launch materials, shareable debrief design. Public demo launch.</div>
+      </div>
+    </div>
+
+    <div class="slide-footer">
+      <span>Built in Claude Code · Engineering support for hosting + frontend polish</span>
+      <span>§ Timeline</span>
+    </div>
+  </section>
+
+  <!-- ====================== SLIDE 15: ASK ====================== -->
+  <section class="slide">
+    <div class="slide-label">14 · The ask</div>
+    <div class="slide-number">15 / 16</div>
+
+    <div class="ask-hero">
+      <h1>Greenlight to <em>build</em>.</h1>
+
+      <ul class="ask-list">
+        <li><span class="ask-num">01</span><span>Two weeks of focused build time on Claude Code.</span></li>
+        <li><span class="ask-num">02</span><span>One engineering team check-in to validate the orchestration approach.</span></li>
+        <li><span class="ask-num">03</span><span>Frontend support starting around Week 7.</span></li>
+        <li><span class="ask-num">04</span><span>Permission to put the company's name on the public demo.</span></li>
+      </ul>
+    </div>
+
+    <div class="slide-footer">
+      <span>L2 thesis + real product + NA exposure · The bet pays out three ways</span>
+      <span>§ Ask</span>
+    </div>
+  </section>
+
+  <!-- ====================== SLIDE 16: CLOSING ====================== -->
+  <section class="closing">
+    <div class="end-mark"><em>The Panel.</em></div>
+    <div class="end-tag">A coordinated panel · An always-watching Observer · A committee that argues · A debrief you'll actually share</div>
+  </section>
+
+</div>
+</body>
+</html>
